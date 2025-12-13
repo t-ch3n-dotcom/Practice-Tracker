@@ -10,7 +10,7 @@ import { getAuth } from 'firebase/auth';
 
 // Initialize Firebase
 const firebaseConfig = {
-  apiKey: "AIzaSyBfZDdkdTRCpv10_bMBYRgPlrcnPE-ZJ6I",
+  apiKey: `${process.env.API_KEY}`,
   authDomain: "practice-tracker-912a1.firebaseapp.com",
   projectId: "practice-tracker-912a1",
   storageBucket: "practice-tracker-912a1.firebasestorage.app",
@@ -20,6 +20,6 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
+export const auth = getAuth(app);
 // For more information on how to access Firebase in your project,
 // see the Firebase documentation: https://firebase.google.com/docs/web/setup#access-firebase
