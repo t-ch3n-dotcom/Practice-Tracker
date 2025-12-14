@@ -1,5 +1,6 @@
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { StyleSheet, View } from "react-native";
+import Divider from "../components/divider";
 import AuthForm from "../components/form";
 import Input from "../components/input";
 import { auth } from "../firebaseConfig";
@@ -39,6 +40,7 @@ export default function CreateAccount() {
         <Input name="email" secure={false}/>
         <Input name="password" secure={true} />
       </AuthForm>
+      <Divider></Divider>
     </View>
   );
 }
