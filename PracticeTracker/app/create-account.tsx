@@ -25,7 +25,7 @@ export default function CreateAccount() {
         case "auth/weak-password":
           methods.setError("password", {
             type: "manual",
-            message: "Password should be at least 6 characters.",
+            message: "Password should be at least 8 characters long and contain an uppercase character, a lowercase character, a number, and a special character.",
           });
           break;
       }
