@@ -36,8 +36,8 @@ export default function CreateAccount() {
   return (
     <View style={styles.center}>
       <AuthForm action="SIGN UP" onSubmit={onSubmit}>
-        <Input name="email" />
-        <Input name="password" />
+        <Input name="email" secure={false}/>
+        <Input name="password" secure={true} />
       </AuthForm>
     </View>
   );

@@ -4,9 +4,10 @@ import { StyleSheet, Text, TextInput } from "react-native";
 
 interface InputProps {
   name: string;
+  secure: boolean
 }
 
-export default function Input({ name }: InputProps) {
+export default function Input({ name, secure }: InputProps) {
   const {
     control
   } = useFormContext();
@@ -25,6 +26,7 @@ export default function Input({ name }: InputProps) {
           <>
             <TextInput
               placeholder={name}
+              secureTextEntry={secure}
               style={[styles.input, isFocused && styles.inputFocused]}
               onChangeText={onChange}
               onFocus={() => setIsFocused(true)}
