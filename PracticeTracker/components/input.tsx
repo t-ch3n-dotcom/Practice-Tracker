@@ -25,7 +25,7 @@ export default function Input({ name, secure }: InputProps) {
         render={({ field: { onChange, value }, fieldState: { error } }) => (
           <>
             <TextInput
-              placeholder={name}
+              placeholder={String(name.charAt(0).toUpperCase() + name.slice(1))}
               secureTextEntry={secure}
               style={[styles.input, isFocused && styles.inputFocused]}
               onChangeText={onChange}
@@ -49,18 +49,19 @@ const styles = StyleSheet.create({
     width: "100%",
     margin: 6,
     borderWidth: 1,
-    padding: 5,
+    padding: 10,
     borderColor: "gray",
-    borderRadius: 5,
+    borderRadius: 10,
+    backgroundColor: "#dcdcdcd6",
   },
   inputFocused: {
     height: 45,
     width: "100%",
     margin: 6,
     borderWidth: 3,
-    padding: 5,
+    padding: 10,
     borderColor: "#b842e0ff",
-    borderRadius: 5,
+    borderRadius: 10,
   },
   error: {
     alignSelf: "flex-start",
