@@ -1,27 +1,52 @@
+import { createUserWithEmailAndPassword } from "firebase/auth";
 import { StyleSheet, View } from "react-native";
-import Form from "../components/form";
+import AuthForm from "../components/form";
 import Input from "../components/input";
+import { auth } from "../firebaseConfig";
 
 export default function CreateAccount() {
-  const onSubmit = (data: any) => {
-    console.log(data);
+  const onSubmit = async (data: any, methods: any) => {
+    try {
+      await createUserWithEmailAndPassword(auth, data.email, data.password);
+    } catch (error: any) {
+      switch (error.code) {
+        case "auth/email-already-in-use":
+          methods.setError("email", {
+            type: "manual",
+            message: "This email is already in use.",
+          });
+          break;
+        case "auth/invalid-email":
+          methods.setError("email", {
+            type: "manual",
+            message: "This email is invalid.",
+          });
+          break;
+        case "auth/weak-password":
+          methods.setError("password", {
+            type: "manual",
+            message: "Password should be at least 6 characters.",
+          });
+          break;
+      }
+    }
+    
   };
 
   return (
     <View style={styles.center}>
-      <Form action="Sign Up" onSubmit={onSubmit}>
+      <AuthForm action="SIGN UP" onSubmit={onSubmit}>
         <Input name="email" />
         <Input name="password" />
-      </Form>
+      </AuthForm>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  center : {
+  center: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  }
+    justifyContent: "center",
+    alignItems: "center",
+  },
 });
-

@@ -1,27 +1,49 @@
-import { FormProvider, useForm } from 'react-hook-form';
-import { Button, StyleSheet } from 'react-native';
+import { FormProvider, useForm } from "react-hook-form";
+import { Dimensions, StyleSheet, Text, View } from "react-native";
+import Button from "./button";
 
 interface FormProps {
-    action: string;
-    onSubmit: (data: any) => void;
-    children : React.ReactNode;
+  action: string;
+  onSubmit: (data: any, methods: any) => void;
+  children: React.ReactNode;
 }
 
-export default function Form({ action, onSubmit, children } : FormProps) {
-    const methods = useForm({
-        mode: 'onSubmit',
-        reValidateMode: 'onSubmit',
-    });
-    
+const screenWidth = Dimensions.get("window").width;
 
-    return (
-        <FormProvider {...methods}>
-            {children}
-            <Button title={action} onPress={methods.handleSubmit(onSubmit)} />
-        </FormProvider>
-    )
+export default function AuthForm({ action, onSubmit, children }: FormProps) {
+  const methods = useForm({
+    mode: "onSubmit",
+    reValidateMode: "onSubmit",
+  });
+
+  const {
+    formState: { errors, submitCount},
+  } = methods;
+
+
+  return (
+    <FormProvider {...methods}>
+      <View style={styles.form}>
+        {children}
+        {submitCount > 0 && Object.entries(errors).some(
+          ([key, error]: any) => error?.type === "required"
+        ) && <Text style={styles.error}>At least one field is missing.</Text>}
+        <Button
+          title={action}
+          onPress={methods.handleSubmit((data) => onSubmit(data, methods))}
+        />
+      </View>
+    </FormProvider>
+  );
 }
 
 const styles = StyleSheet.create({
-
+  form: {
+    width: screenWidth * 0.7,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  error: {
+    alignSelf: "flex-start",
+  },
 });
