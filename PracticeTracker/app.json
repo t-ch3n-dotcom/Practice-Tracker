@@ -4,12 +4,15 @@
     "slug": "practice-tracker",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
     "scheme": "practicetracker",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.tchen8998.practicetracker",
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
+      }
     },
     "android": {
       "adaptiveIcon": {
@@ -50,6 +53,12 @@
         "projectId": "0609a73e-1a04-49b4-a4bf-e782a5533d66"
       }
     },
-    "owner": "tchen8998"
+    "owner": "tchen8998",
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/0609a73e-1a04-49b4-a4bf-e782a5533d66"
+    }
   }
 }

@@ -10,8 +10,8 @@ export default function SignIn() {
   return (
     <View>
       <Form action="Log In" onSubmit={onSubmit}>
-        <Input name="email" />
-        <Input name="password" />
+        <Input name="email" secure={false}/>
+        <Input name="password" secure={true}/>
       </Form>
     </View>
   );
